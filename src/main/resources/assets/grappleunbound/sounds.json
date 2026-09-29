@@ -1,0 +1,22 @@
+ {
+ 	"slide": {
+ 		"category": "player",
+		"subtitle": "grappleunbound.subtitle.slide",
+		"sounds": [ "grappleunbound:slide1", "grappleunbound:slide2", "grappleunbound:slide3" ]
+	},
+	"doublejump": {
+		"category": "player",
+	   "subtitle": "grappleunbound.subtitle.doublejump",
+	   "sounds": [ "grappleunbound:jump1", "grappleunbound:jump2", "grappleunbound:jump3", "grappleunbound:jump4" ]
+   },
+   "rocket": {
+	"category": "player",
+   "subtitle": "grappleunbound.subtitle.rocket",
+   "sounds": [ "grappleunbound:rocket"]
+},
+   "enderstaff": {
+	"category": "player",
+   "subtitle": "grappleunbound.subtitle.enderstaff",
+   "sounds": [ "grappleunbound:enderstaff"]
+}
+}

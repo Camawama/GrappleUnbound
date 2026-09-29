@@ -1,0 +1,7 @@
+{
+  "type": "grappleunbound:hook_upgrade",
+  "template": { "item": "grappleunbound:doubleupgradeitem" },
+  "base": { "item": "grappleunbound:grapplinghook" },
+  "addition": { "item": "minecraft:iron_ingot" },
+  "result": { "item": "grappleunbound:grapplinghook" }
+}

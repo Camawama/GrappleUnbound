@@ -1,0 +1,21 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
+			"item": "grappleunbound:grapplinghook"
+		}, 
+		{
+			"item": "grappleunbound:motorupgradeitem"
+		}
+	],
+	"result": {
+		"item": "grappleunbound:grapplinghook",
+		"nbt": { "custom": {
+			"throwspeed": 3.5,
+			"maxlen": 60,
+
+			"motor": true,
+			"playermovementmult": 2
+		}}
+	}
+}

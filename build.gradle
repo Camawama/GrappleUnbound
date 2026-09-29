@@ -110,13 +110,6 @@ minecraft {
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
-// We now ship a real mixin (lead rendering override), so the annotation processor generates the
-// refmap and the config is registered with the dev runs.
-mixin {
-    add sourceSets.main, 'grapplemod.refmap.json'
-    config 'grapplemod.mixins.json'
-}
-
 repositories {
     // 1. Maven Central MUST be top to fix the 'typetools' error
     mavenCentral()
@@ -158,29 +151,42 @@ dependencies {
 
     implementation fg.deobf("me.shedaniel.cloth:cloth-config-forge:11.1.106")
 
-    // --- VS2 DEPENDENCIES ---
+    // Shared library (from mavenLocal): all Valkyrien Skies access goes through it
+    implementation fg.deobf("net.camacraft.camafy:camafy:${camafy_version}")
+
+    // --- VS2 DEPENDENCIES (dev runs only: nothing compiles against VS any more) ---
     // KFF contains no Minecraft classes, so it must not go through fg.deobf (remapping it fails)
     implementation "thedarkcolour:kotlinforforge:4.11.0"
-    implementation fg.deobf("org.valkyrienskies:valkyrienskies-120-forge:2.4.11")
+    runtimeOnly fg.deobf("org.valkyrienskies:valkyrienskies-120-forge:2.4.11")
 
-    // Core API pinned to the version the VS forge jar ships with (see its POM) for reproducible builds
-    implementation "org.valkyrienskies.core:api:${vs_core_version}"
-    implementation "org.valkyrienskies.core:impl:${vs_core_version}"
-    implementation "org.valkyrienskies.core:util:${vs_core_version}"
-    // internal: needed at compile time for ValkyrienSkiesMod.getVsCore() (phys-tick force application)
-    implementation "org.valkyrienskies.core:internal:${vs_core_version}"
+    // Core pinned to the version the VS forge jar ships with (see its POM) for reproducible builds.
+    // (fg.deobf drops the jar's own dependencies, so VS's runtime needs are listed here.)
+    runtimeOnly "org.valkyrienskies.core:api:${vs_core_version}"
+    runtimeOnly "org.valkyrienskies.core:impl:${vs_core_version}"
+    runtimeOnly "org.valkyrienskies.core:util:${vs_core_version}"
+    runtimeOnly "org.valkyrienskies.core:internal:${vs_core_version}"
 
     implementation("org.joml:joml:1.10.5")
 
     // Explicitly add typetools to resolve the missing dependency error
     implementation "net.jodah:typetools:0.6.3"
 
-    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
-
     // JEI
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}")
     runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
+
+    // Headless unit tests (src/test): rope wrapping against a stand-in world with a moving ship
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.1'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.10.1'
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events 'passed', 'failed'
+        exceptionFormat 'full'
+    }
 }
 
 // This block of code expands all the gradle properties in the specified resource targets.
@@ -190,7 +196,7 @@ def intoTargets = ["$rootDir/out/production/resources/", "$rootDir/out/productio
 def replaceProperties = [mod_id: mod_id, mod_name: mod_name, mod_version: mod_version,
                          mod_authors: mod_authors, mod_description: mod_description,
                          minecraft_version_range: minecraft_version_range, forge_version_range: forge_version_range,
-                         loader_version_range: loader_version_range]
+                         loader_version_range: loader_version_range, camafy_version_range: camafy_version_range]
 processResources {
     inputs.properties replaceProperties
     replaceProperties.put 'project', project
@@ -221,8 +227,7 @@ jar {
                 'Implementation-Title': project.name,
                 'Implementation-Version': mod_version,
                 'Implementation-Vendor': mod_authors,
-                'Implementation-Timestamp': new Date().format('yyyy-MM-dd\'T\'HH:mm:ssZ'),
-                'MixinConfigs': 'grapplemod.mixins.json'
+                'Implementation-Timestamp': new Date().format('yyyy-MM-dd\'T\'HH:mm:ssZ')
         ])
     }
 }

@@ -1,0 +1,24 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "grappleunbound:item/grapplinghook"
+    },
+	"overrides": [
+	    { "predicate": { "grappleunbound:attached": 1 }, "model": "grappleunbound:item/rope" },
+	    { "predicate": { "grappleunbound:magnet": 1, "grappleunbound:attached": 0 }, "model": "grappleunbound:item/magnethook" },
+	    { "predicate": { "grappleunbound:magnet": 1, "grappleunbound:attached": 1 }, "model": "grappleunbound:item/rope" },
+	    { "predicate": { "grappleunbound:enderstaff": 1, "grappleunbound:attached": 0 }, "model": "grappleunbound:item/enderhook" },
+	    { "predicate": { "grappleunbound:enderstaff": 1, "grappleunbound:attached": 1 }, "model": "grappleunbound:item/rope" },
+	    { "predicate": { "grappleunbound:motor": 1, "grappleunbound:attached": 0 }, "model": "grappleunbound:item/motorhook" },
+	    { "predicate": { "grappleunbound:motor": 1, "grappleunbound:attached": 1 }, "model": "grappleunbound:item/motorhookrope" },
+	    { "predicate": { "grappleunbound:motor": 1, "grappleunbound:smart": 1, "grappleunbound:attached": 0 }, "model": "grappleunbound:item/smarthook" },
+	    { "predicate": { "grappleunbound:motor": 1, "grappleunbound:smart": 1, "grappleunbound:attached": 1 }, "model": "grappleunbound:item/smarthookrope" },
+	    { "predicate": { "grappleunbound:motor": 1, "grappleunbound:double": 1, "grappleunbound:attached": 0 }, "model": "grappleunbound:item/doublemotorhook" },
+	    { "predicate": { "grappleunbound:motor": 1, "grappleunbound:double": 1, "grappleunbound:attached": 1 }, "model": "grappleunbound:item/doublemotorhookrope" },
+	    { "predicate": { "grappleunbound:rocket": 1, "grappleunbound:attached": 0 }, "model": "grappleunbound:item/rockethook" },
+	    { "predicate": { "grappleunbound:rocket": 1, "grappleunbound:attached": 1 }, "model": "grappleunbound:item/rockethookrope" },
+	    { "predicate": { "grappleunbound:rocket": 1, "grappleunbound:double": 1, "grappleunbound:attached": 0 }, "model": "grappleunbound:item/rocketdoublemotorhook" },
+	    { "predicate": { "grappleunbound:rocket": 1, "grappleunbound:double": 1, "grappleunbound:attached": 1 }, "model": "grappleunbound:item/rocketdoublemotorhookrope" },
+	    { "predicate": { "grappleunbound:hook": 1 }, "model": "grappleunbound:item/hook" }
+	]
+}

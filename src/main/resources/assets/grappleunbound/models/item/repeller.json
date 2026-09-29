@@ -1,0 +1,9 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "grappleunbound:item/repeller"
+    },
+	"overrides": [
+	    { "predicate": { "grappleunbound:attached": 1 }, "model": "grappleunbound:item/repelleron" }
+	]
+}

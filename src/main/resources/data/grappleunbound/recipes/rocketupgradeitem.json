@@ -1,0 +1,14 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
+			"item": "grappleunbound:baseupgradeitem"
+		}, 
+		{
+			"item": "minecraft:firework_rocket"
+		}
+	],
+	"result": {
+		"item": "grappleunbound:rocketupgradeitem"
+	}
+}

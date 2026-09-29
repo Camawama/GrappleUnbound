@@ -233,6 +233,13 @@
     - hooked ship flies away: check rope pays out to max length, then snaps
     - rope wraps around a ship hull corner; check bend follows the ship as it moves
     - rope unwraps when swinging back around a ship corner
+    - hooked to a ship, walk/swing around a pillar or wall corner: the rope wraps it every time, with the ship
+      still, drifting toward you, away from you, sideways, bobbing and turning (same as a hook on a block)
+    - hooked to a light ship, walk away round a pillar so the rope drags the ship: the rope stays wrapped and
+      the ship is pulled towards the pillar first
+    - with the rope already wrapped once, let the ship carry the hook end over another corner: it wraps that too
+    - walk far past a thin (1-block) pillar after wrapping it: the rope stays wrapped until you walk back
+    - a ship moving into a still rope (hook on a block) catches it and pushes it along
     - hook attached to ship, ship deleted (kill command / disassembly): check hook detaches within a few seconds
     - hook attached to ship, walk far away so ship unloads: check hook detaches
     - break the ship block the hook is attached to: check rope detaches
@@ -241,3 +248,11 @@
     - magnet hook near a ship
     - check everything above on a dedicated server
     - check the mod works normally with VS NOT installed (client and dedicated server)
+ - rename from GrappleVS (mod id grapplemod) to Grapple Unbound (grappleunbound)
+    - load a world saved with GrappleVS: hooks, upgrade items, long fall boots (and their wallrun/double
+      jump/sliding enchantments), a placed modifier block and its upgrades are all still there; the log shows
+      "Carried N minecraft:item entries over from grapplemod to grappleunbound" (and the same for the others)
+    - an old config/grapplemod.toml is moved to config/grappleunbound.toml on first start, settings kept
+    - key binds come back at their defaults once (their names changed); rebind and restart: they stick
+    - Full Stop treats the thrown hook as a physics projectile, WallJump's enchantment exclusivity still works
+      (after their references are updated to grappleunbound)

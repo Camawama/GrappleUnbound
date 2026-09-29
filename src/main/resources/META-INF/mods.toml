@@ -2,14 +2,15 @@ modLoader="javafml"
 loaderVersion="${loader_version_range}"
 
 license="GPL-3.0"
-issueTrackerURL="https://github.com/Camawama/GrappleVS/issues"
+issueTrackerURL="https://github.com/Camawama/GrappleUnbound/issues"
 
 [[mods]]
 modId="${mod_id}"
 version="${mod_version}"
 displayName="${mod_name}"
-displayURL="https://github.com/Camawama/GrappleVS"
+displayURL="https://github.com/Camawama/GrappleUnbound"
 authors="${mod_authors}"
+credits='''Based on yyon's Grappling Hook Mod (https://github.com/yyon/grapplemod) and its 1.20.1 port Grappling Hook Mod: Reforged. Upstream credits: 1.18 update by Nyfaria, textures by Mayesnake, and the contributors listed in the README. Formerly GrappleVS. Licensed GPL-3.0.'''
 description='''${mod_description}'''
 logoFile="icon.png"
 
@@ -34,11 +35,19 @@ side="BOTH"
     ordering="NONE"
     side="BOTH"
 
-# Optional integration; tested against VS 2.4.x. The integration uses some VS-internal API,
-# so bump this range deliberately after testing against newer VS releases.
+# Shared library; the Valkyrien Skies integration goes through it.
+[[dependencies.${mod_id}]]
+    modId="camafy"
+    mandatory=true
+    versionRange="${camafy_version_range}"
+    ordering="AFTER"
+    side="BOTH"
+
+# Optional integration, reached through Camafy (whose ship support needs VS 2.4.11 or newer);
+# tested against VS 2.4.x, so bump the upper bound deliberately after testing newer releases.
 [[dependencies.${mod_id}]]
     modId="valkyrienskies"
     mandatory=false
-    versionRange="[2.4.0,2.5.0)"
+    versionRange="[2.4.11,2.5.0)"
     ordering="AFTER"
     side="BOTH"
