@@ -121,7 +121,7 @@ Camafy 0.1.7's `Gravity.strength` is the real local gravity, so the rope's gravi
   (climbing/reeling are client-authoritative) to the server via a new `HookRopeLengthMessage`;
   network protocol bumped to **2.2**.
 
-### Rope wrapping rework + rope snapping (round 8)
+### Rope wrapping rework + rope snapping
 
 - **Seam catches vs real wraps are now told apart geometrically, not by thresholds.** Up close
   they look identical (tiny angle, tiny penetration) — what differs is what lies BEYOND the
@@ -140,7 +140,7 @@ Camafy 0.1.7's `Gravity.strength` is the real local gravity, so the rope's gravi
   appears in the creative tab; the block stays registered (and functional) so existing worlds
   keep theirs. Smithing upgrades + the in-hand screen (V) are the upgrade path.
 
-### Rope wrapping fixes (round 7)
+### Rope wrapping fixes
 
 - **Ropes reliably wrap around pillars again.** Two of the recent anti-artifact guards were
   overreaching. The angle-based stale-bend prune deleted fresh wraps (a new wrap is always
@@ -152,7 +152,7 @@ Camafy 0.1.7's `Gravity.strength` is the real local gravity, so the rope's gravi
   corners not on the hooked ship — including legitimate pillar wraps while towing. It now only
   rejects foreign corners while the ship is actually spinning (>1 rad/s).
 
-### Ship pulling fixes (round 6)
+### Ship pulling fixes (fourth pass)
 
 - **Pulled ships follow the rope path, not a straight line to the player.** The server now keeps
   the rope segments for ship-attached hooks up to date each tick (with a stretch allowance so a
@@ -167,7 +167,7 @@ Camafy 0.1.7's `Gravity.strength` is the real local gravity, so the rope's gravi
 - **Hooked mobs stop pathfinding.** The rope owns their movement while attached, and they no
   longer march back to a stale destination the moment they're released.
 
-### Ship pulling fixes (round 5)
+### Ship pulling fixes (third pass)
 
 - **Light ships no longer wind up into an ever-faster orbit.** The spring pumped energy every
   stretch-contract cycle (elastic pendulum resonance) with nothing bleeding off tangential
@@ -179,7 +179,7 @@ Camafy 0.1.7's `Gravity.strength` is the real local gravity, so the rope's gravi
   range was ~80 blocks while the release distance is 96, leaving a dead zone with an invisible
   but still-attached rope; the hook now tracks out to 8 chunks (128 blocks).
 
-### Ship pulling fixes (round 4)
+### Ship pulling fixes (second pass)
 
 - **No more phantom ground bends under a rolling ship.** When the rope's collision sweep hits a
   ship block, last tick's rope is remapped into the ship's frame; on a *rotating* ship that
@@ -192,7 +192,7 @@ Camafy 0.1.7's `Gravity.strength` is the real local gravity, so the rope's gravi
   below max rope length + snap buffer; 0 disables) — covering the case where the rope was so
   long it wasn't even rendered any more.
 
-### Ship pulling fixes (round 3)
+### Ship pulling fixes
 
 - **Hooked ships no longer spin out of control / orbit the player.** The 70/30 center-of-mass
   split is gone: rope tension is applied 100% at the attach point (a real rope), and while the
@@ -208,7 +208,7 @@ Camafy 0.1.7's `Gravity.strength` is the real local gravity, so the rope's gravi
   line-of-sight stale-bend pruning as leads: any bend whose neighbours can see each other again
   is dropped immediately.
 
-### Creative flight + ship pulling fixes (round 2)
+### Creative flight + ship pulling fixes
 
 - **Releasing a grapple while flying no longer drops you out of the sky.** Rope release spawns
   an air-friction controller for momentum smoothing, which applies gravity every tick — while
@@ -236,7 +236,7 @@ Camafy 0.1.7's `Gravity.strength` is the real local gravity, so the rope's gravi
   during creative flight, matching the flying branch of the controller that already suspends
   rope physics. Previously only vertical flight (space/crouch) responded while grappled.
 
-### Lead overhaul fixes (round 2)
+### Lead overhaul fixes
 
 - **Lead bends unwrap eagerly.** Any bend whose neighbours regain line of sight is dropped
   immediately instead of waiting for the physical release-plane crossing — on a lead the strict

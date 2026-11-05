@@ -254,4 +254,4 @@ These are all inherited from upstream's client-authoritative design, but a fork 
 
 ---
 
-*Audit performed file-by-file over all 60+ Java sources; VS API claims (method signatures, coordinate-space semantics of `getShipObjectManagingPos`, `clipIncludeShips` overloads, presence of VS's `clip_replace/MixinLevel`) were verified by inspecting `valkyrienskies-120-forge-2.4.0.jar` with `javap` rather than from memory.*
+*Audit performed file-by-file over all 60+ Java sources; VS API claims (method signatures, coordinate-space semantics of `getShipObjectManagingPos`, `clipIncludeShips` overloads, presence of VS's `clip_replace/MixinLevel`) were verified by inspecting `valkyrienskies-120-forge-2.4.0.jar` with `javap`.*
